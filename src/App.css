@@ -3,4 +3,13 @@
   padding: 2rem;
   text-align: center;
 }
+.tabs-scrollable {
+  overflow-x: auto;
+  white-space: nowrap;
+}
 
+.tabs-scrollable .tabs-header {
+  display: inline-flex;
+  gap: 5rem;
+  white-space: nowrap;
+}

@@ -1,15 +1,18 @@
-import './App.css'
-import Counter from './Components/Counter'
-import Home from './Components/Home'
+import { useState } from "react";
+import "./App.css";
+import Home from "./Components/Home";
+import { myContext } from "./Components/Context";
 
 function App() {
+  const [cart, setCart] = useState([]);
 
   return (
     <>
-    <Home/>
-    {/* <Counter/> */}
+      <myContext.Provider value={{cart,setCart}}>
+        <Home />
+      </myContext.Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

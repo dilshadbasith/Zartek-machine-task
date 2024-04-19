@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Tabs,
   TabsHeader,
@@ -7,12 +7,19 @@ import {
   TabPanel,
   Card,
   Typography,
+  Badge,
 } from "@material-tailwind/react";
 import axios from "axios";
 import Counter from "./Counter";
+import { FaShoppingCart } from "react-icons/fa";
+import { myContext } from "./Context";
+import "../../src/App.css"
+
 
 function Home() {
   const [hotelDetails, setHotelDetails] = useState([]);
+  const {cart}=useContext(myContext)
+
 
   async function getDetails() {
     try {
@@ -29,14 +36,26 @@ function Home() {
     getDetails();
   }, []);
 
+
+
   console.log(hotelDetails);
+
 
   return (
     <div>
-      <h1 className="text-left text-gray-600 font-bold text-xl">UNI Resto Cafe</h1>
+      <div className="flex justify-between">
+        <h1 className="text-left text-gray-600 font-bold text-xl">
+          UNI Resto Cafe
+        </h1>
+        <Badge content={cart.length} >
+          <FaShoppingCart className="text-2xl" />
+        </Badge>
+      </div>
+      
       <Tabs value="html" className="max-w-[80rem] pt-2">
+        <div className="tabs-scrollable">
         <TabsHeader
-          className="bg-transparent border-b-2"
+          className="bg-transparent border-b-2 tabs-header"
           indicatorProps={{
             className:
               "border-b-2 border-red-700 text-red-700 rounded-none shadow-none",
@@ -52,6 +71,7 @@ function Home() {
             </Tab>
           ))}
         </TabsHeader>
+        </div>
         <TabsBody>
           {hotelDetails.map((category) => (
             <TabPanel
@@ -85,7 +105,18 @@ function Home() {
                             >
                               {dish.dish_description}
                             </Typography>
-                            {dish.dish_Availability==true?<Counter/>:<p className="text-red-900 text-sm font-bold">Not Available</p>}
+                            {dish.dish_Availability == true ? (
+                              <Counter />
+                            ) : (
+                              <p className="text-red-900 text-sm font-bold">
+                                Not Available
+                              </p>
+                            )}
+                            {dish.addonCat.length > 0 && (
+                              <p className="text-red-900 text-sm font-bold">
+                                Customizations Available
+                              </p>
+                            )}
                           </td>
                           <td className="p-4 border-b border-blue-gray-50">
                             <Typography
@@ -98,7 +129,7 @@ function Home() {
                           </td>
                           <td className="p-4 border-b border-blue-gray-50">
                             <img
-                              className="h-12 w-12"
+                              className="h-12 w-12 rounded-lg"
                               src={dish.dish_image}
                               alt="image"
                             />
@@ -113,7 +144,7 @@ function Home() {
           ))}
         </TabsBody>
       </Tabs>
-    </div>
+      </div>
   );
 }
 
