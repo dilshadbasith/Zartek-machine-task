@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import axios from "axios";
+import Counter from "./Counter";
 
 function Home() {
   const [hotelDetails, setHotelDetails] = useState([]);
@@ -32,12 +33,13 @@ function Home() {
 
   return (
     <div>
-      <h1 className="text-left text-gray-600 font-bold">UNI Resto Cafe</h1>
+      <h1 className="text-left text-gray-600 font-bold text-xl">UNI Resto Cafe</h1>
       <Tabs value="html" className="max-w-[80rem] pt-2">
         <TabsHeader
           className="bg-transparent border-b-2"
           indicatorProps={{
-            className: "border-b-2 border-red-700 text-red-700 rounded-none shadow-none",
+            className:
+              "border-b-2 border-red-700 text-red-700 rounded-none shadow-none",
           }}
         >
           {hotelDetails.map((item) => (
@@ -83,6 +85,7 @@ function Home() {
                             >
                               {dish.dish_description}
                             </Typography>
+                            {dish.dish_Availability==true?<Counter/>:<p className="text-red-900 text-sm font-bold">Not Available</p>}
                           </td>
                           <td className="p-4 border-b border-blue-gray-50">
                             <Typography
@@ -94,7 +97,11 @@ function Home() {
                             </Typography>
                           </td>
                           <td className="p-4 border-b border-blue-gray-50">
-                            <img className="h-12 w-12" src={dish.dish_image} alt="image" />
+                            <img
+                              className="h-12 w-12"
+                              src={dish.dish_image}
+                              alt="image"
+                            />
                           </td>
                         </tr>
                       );
@@ -102,15 +109,6 @@ function Home() {
                   </tbody>
                 </table>
               </Card>
-              {/* <ul>
-                {category.category_dishes.map((dish) => (
-                  <li key={dish.dish_id}>
-                    <div>
-                      <div>{dish.dish_name}</div>
-                    </div>
-                  </li>
-                ))}
-              </ul> */}
             </TabPanel>
           ))}
         </TabsBody>

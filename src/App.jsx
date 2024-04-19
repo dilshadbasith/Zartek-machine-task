@@ -1,4 +1,5 @@
 import './App.css'
+import Counter from './Components/Counter'
 import Home from './Components/Home'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
     <Home/>
+    {/* <Counter/> */}
     </>
   )
 }
