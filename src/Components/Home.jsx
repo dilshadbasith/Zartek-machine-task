@@ -66,7 +66,7 @@ function Home() {
       </div>
 
       <Tabs
-        value={defaultTabValue} // Set the default tab value here
+        value={defaultTabValue}
         className="max-w-[80rem] pt-2"
       >
         <div className="tabs-scrollable">
@@ -80,7 +80,7 @@ function Home() {
             {hotelDetails.map((item) => (
               <Tab
                 key={item.menu_category_id}
-                value={item.menu_category_id} // Use the ID as value
+                value={item.menu_category_id}
               >
                 {item.menu_category}
               </Tab>
@@ -91,7 +91,7 @@ function Home() {
           {hotelDetails.map((category) => (
             <TabPanel
               key={category.menu_category_id}
-              value={category.menu_category_id} // Use the ID as value
+              value={category.menu_category_id}
             >
               <Card className="h-full w-full">
                 <table className="w-full table-auto text-left">
