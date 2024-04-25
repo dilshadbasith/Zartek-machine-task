@@ -11,12 +11,12 @@ function Counter() {
   };
 
   const decrementCount = () => {
-    if(count>0){
+    if (count > 0) {
       setCount(count - 1);
-    }else{
-      setCount(0)
+      setCart(cart.slice(0, -1));
+    } else {
+      setCount(0);
     }
-    setCart(cart.slice(0, -1));
   };
 
 

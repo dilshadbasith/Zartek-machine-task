@@ -58,9 +58,9 @@ function Home() {
           UNI Resto Cafe
         </h1>
         <div className="flex gap-3">
-          <h1 className="text-gray-500 font-bold text-sm">My Orders</h1>
+          <h1 className="text-gray-500 font-bold text-sm cursor-pointer">My Orders</h1>
           <Badge content={cart.length}>
-            <FaShoppingCart className="text-2xl text-gray-500" />
+            <FaShoppingCart className="text-2xl text-gray-500 cursor-pointer" />
           </Badge>
         </div>
       </div>
